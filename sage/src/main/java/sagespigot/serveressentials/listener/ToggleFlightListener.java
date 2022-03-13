@@ -18,8 +18,8 @@ import sagespigot.serveressentials.ServerEssentials;
 public class ToggleFlightListener implements Listener {
     FileConfiguration configFile = ServerEssentials.getInstance().getConfigFile();
 
-    Double doubleJumpHeightMult = (Double) configFile.get("jumppad-height-multiplier");
-    Double doubleJumpVelMult = (Double) configFile.get("jumppad-velocity-multiplier");
+    Double doubleJumpAddHeightMult = (Double) configFile.get("djump-add-height-multiplier");
+    Double doubleJumpAddVelMult = (Double) configFile.get("djump-add-velocity-multiplier");
 
     @EventHandler
     public void onToggleFlight(PlayerToggleFlightEvent flightEvent) {
@@ -30,12 +30,10 @@ public class ToggleFlightListener implements Listener {
                 playerLocation.subtract(0, 1, 0).getBlock().getType() != Material.AIR) {
             flightEvent.setCancelled(true);
 
-            Vector changePlayerMovementDir = playerLocation.getDirection().multiply(doubleJumpVelMult).setY(doubleJumpHeightMult);
+            Vector changePlayerMovementDir = playerLocation.getDirection().multiply(doubleJumpAddVelMult).setY(doubleJumpAddHeightMult);
             player.setVelocity(changePlayerMovementDir);
 
             player.playSound(playerLocation, Sound.ENTITY_BAT_TAKEOFF, 1, (float) 0.9);
-        } else {
-            flightEvent.setCancelled(true);
         }
     }
 }

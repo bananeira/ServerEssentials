@@ -1,7 +1,7 @@
 boostpad-block: "GLOWSTONE"
 boostpad-plate: "HEAVY_WEIGHTED_PRESSURE_PLATE"
-boostpad-height-multiplier: 1.0
-boostpad-velocity-multiplier: 2.0
+boostpad-add-height-multiplier: 1.0
+boostpad-add-velocity-multiplier: 2.0
 
-jumppad-height-multiplier: 0.75
-jumppad-velocity-multiplier: 1.5
+djump-add-height-multiplier: 0.75
+djump-add-velocity-multiplier: 1.5

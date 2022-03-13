@@ -2,3 +2,9 @@ name: ServerEssentials
 version: '${project.version}'
 main: sagespigot.serveressentials.ServerEssentials
 api-version: 1.18
+
+commands:
+  boostpad:
+    aliases:
+      - bp
+      - boostpad
