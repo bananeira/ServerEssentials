@@ -13,6 +13,6 @@ public class QuitListener implements Listener {
     public void onPlayerQuitEvent(PlayerQuitEvent quitEvent) {
         String playerDisplayName = quitEvent.getPlayer().getDisplayName();
 
-        quitEvent.setQuitMessage(String.format(ChatColor.RED + "%s" + ChatColor.GRAY + " has left the server.", playerDisplayName));
+        quitEvent.setQuitMessage(String.format(ChatColor.RED + "%s" + ChatColor.GRAY + " has left the server!", playerDisplayName));
     }
 }
