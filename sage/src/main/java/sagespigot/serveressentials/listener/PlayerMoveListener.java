@@ -21,6 +21,9 @@ public class PlayerMoveListener implements Listener {
     Material boostpadBlock = Material.valueOf(configFile.getString("boostpad-block"));
     Material boostpadPlate = Material.valueOf(configFile.getString("boostpad-plate"));
 
+    Double boostpadHeightMult = (Double) configFile.get("boostpad-height-multiplier");
+    Double boostpadVelMult = (Double) configFile.get("boostpad-velocity-multiplier");
+
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent moveEvent) {
         Player player = moveEvent.getPlayer();
@@ -29,10 +32,10 @@ public class PlayerMoveListener implements Listener {
         while (playerLocation.getBlock().getType() == boostpadPlate &&
                 playerLocation.subtract(0, 1, 0).getBlock().getType() == boostpadBlock) {
 
-            Vector changePlayerMovementDir = playerLocation.getDirection().multiply(2).setY(1);
+            Vector changePlayerMovementDir = playerLocation.getDirection().multiply(boostpadVelMult).setY(boostpadHeightMult);
             player.setVelocity(changePlayerMovementDir);
 
-            player.playSound(playerLocation, Sound.ENTITY_CAT_HISS, 1, (float) 0.8);
+            player.playSound(playerLocation, Sound.ENTITY_CAT_HISS, 1, (float) 0.9);
         }
     }
 }

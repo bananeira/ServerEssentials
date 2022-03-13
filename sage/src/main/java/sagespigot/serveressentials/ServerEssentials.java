@@ -3,9 +3,7 @@ package sagespigot.serveressentials;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import sagespigot.serveressentials.listener.JoinListener;
-import sagespigot.serveressentials.listener.PlayerMoveListener;
-import sagespigot.serveressentials.listener.QuitListener;
+import sagespigot.serveressentials.listener.*;
 
 public final class ServerEssentials extends JavaPlugin {
     private static ServerEssentials plugin;
@@ -17,7 +15,9 @@ public final class ServerEssentials extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new JoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new QuitListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDamageListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ToggleFlightListener(), this);
 
         config.options().copyDefaults(true);
         saveConfig();
