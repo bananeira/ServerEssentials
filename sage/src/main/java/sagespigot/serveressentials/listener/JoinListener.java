@@ -13,6 +13,6 @@ public class JoinListener implements Listener {
     public void onPlayerJoinEvent(PlayerJoinEvent joinEvent) {
         String playerDisplayName = joinEvent.getPlayer().getDisplayName();
 
-        joinEvent.setJoinMessage(String.format(ChatColor.GREEN + "%s" + ChatColor.GRAY + " has joined the Server.", playerDisplayName));
+        joinEvent.setJoinMessage(String.format(ChatColor.GREEN + "%s" + ChatColor.GRAY + " has joined the server.", playerDisplayName));
     }
 }

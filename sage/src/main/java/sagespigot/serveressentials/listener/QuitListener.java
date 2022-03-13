@@ -3,7 +3,6 @@ package sagespigot.serveressentials.listener;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
@@ -14,6 +13,6 @@ public class QuitListener implements Listener {
     public void onPlayerQuitEvent(PlayerQuitEvent quitEvent) {
         String playerDisplayName = quitEvent.getPlayer().getDisplayName();
 
-        quitEvent.setQuitMessage(String.format(ChatColor.RED + "%s" + ChatColor.GRAY + " has left the Server.", playerDisplayName));
+        quitEvent.setQuitMessage(String.format(ChatColor.RED + "%s" + ChatColor.GRAY + " has left the server.", playerDisplayName));
     }
 }

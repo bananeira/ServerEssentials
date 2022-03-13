@@ -18,20 +18,21 @@ import sagespigot.serveressentials.ServerEssentials;
 public class PlayerMoveListener implements Listener {
     FileConfiguration configFile = ServerEssentials.getInstance().getConfigFile();
 
+    Material boostpadBlock = Material.valueOf(configFile.getString("boostpad-block"));
+    Material boostpadPlate = Material.valueOf(configFile.getString("boostpad-plate"));
+
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent moveEvent) {
-        Material boostpadBlock = Material.getMaterial(configFile.getString("boostpad-block"));
-        Material boostpadPlate = Material.getMaterial(configFile.getString("boostpad-plate"));
-
         Player player = moveEvent.getPlayer();
         Location playerLocation = player.getLocation();
 
-        if (playerLocation.getBlock().getType() == boostpadBlock
-                && playerLocation.subtract(0, 1, 0).getBlock().getType() == boostpadPlate) {
+        while (playerLocation.getBlock().getType() == boostpadPlate &&
+                playerLocation.subtract(0, 1, 0).getBlock().getType() == boostpadBlock) {
+
             Vector changePlayerMovementDir = playerLocation.getDirection().multiply(2).setY(1);
             player.setVelocity(changePlayerMovementDir);
 
-            player.playSound(playerLocation, Sound.ENTITY_CAT_HISS, 1, 1);
+            player.playSound(playerLocation, Sound.ENTITY_CAT_HISS, 1, (float) 0.8);
         }
     }
 }
