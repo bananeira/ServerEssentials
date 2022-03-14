@@ -48,7 +48,7 @@ public class BoostPadCommand implements CommandExecutor {
 
                         return false;
                     } else {
-                        ingameSender.sendMessage(ChatColor.RED + "This command has to be executed using the following format: " + ChatColor.DARK_RED + "/" + label + " [setplate/setblock] <name> or /" + label + " getinfo");
+                        ingameSender.sendMessage(ChatColor.DARK_RED + "This command has to be executed using the following format: " + ChatColor.RED + "/" + label + " [setplate/setblock] <name> or /" + label + " getinfo");
                     }
 
                 } else if (args[0].equalsIgnoreCase("setblock")) {
@@ -72,7 +72,7 @@ public class BoostPadCommand implements CommandExecutor {
 
                         return false;
                     } else {
-                        ingameSender.sendMessage(ChatColor.RED + "This command has to be executed using the following format: " + ChatColor.DARK_RED + "/" + label + " [setplate/setblock/setvelocity/setheight] <name> or /" + label + " info");
+                        ingameSender.sendMessage(ChatColor.DARK_RED + "This command has to be executed using the following format: " + ChatColor.RED + "/" + label + " [setplate/setblock/setvelocity/setheight] <name> or /" + label + " info");
                     }
 
                     return false;
@@ -97,7 +97,7 @@ public class BoostPadCommand implements CommandExecutor {
 
                         return false;
                     } else {
-                        ingameSender.sendMessage(ChatColor.RED + "This command has to be executed using the following format: " + ChatColor.DARK_RED + "/" + label + " [setplate/setblock/setvelocity/setheight] <name> or /" + label + " info");
+                        ingameSender.sendMessage(ChatColor.DARK_RED + "This command has to be executed using the following format: " + ChatColor.RED + "/" + label + " [setplate/setblock/setvelocity/setheight] <name> or /" + label + " info");
                     }
 
                     return false;
@@ -122,7 +122,7 @@ public class BoostPadCommand implements CommandExecutor {
 
                         return false;
                     } else {
-                        ingameSender.sendMessage(ChatColor.RED + "This command has to be executed using the following format: " + ChatColor.DARK_RED + "/" + label + " [setplate/setblock/setvelocity/setheight] <name> or /" + label + " info");
+                        ingameSender.sendMessage(ChatColor.DARK_RED + "This command has to be executed using the following format: " + ChatColor.RED + "/" + label + " [setplate/setblock/setvelocity/setheight] <name> or /" + label + " info");
                     }
 
                     return false;
