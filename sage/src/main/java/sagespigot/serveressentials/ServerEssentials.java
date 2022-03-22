@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import sagespigot.serveressentials.commands.BoostPadCommand;
+import sagespigot.serveressentials.commands.JustAMathFunctionLol;
 import sagespigot.serveressentials.listener.*;
 
 public final class ServerEssentials extends JavaPlugin {
@@ -21,6 +22,7 @@ public final class ServerEssentials extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ToggleFlightListener(), this);
 
         getCommand("boostpad").setExecutor(new BoostPadCommand());
+        getCommand("justamathfunctionlol").setExecutor(new JustAMathFunctionLol());
 
         config.options().copyDefaults(true);
 
