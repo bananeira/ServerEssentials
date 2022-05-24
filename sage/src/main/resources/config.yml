@@ -1,7 +1,21 @@
+#LOBBY
+lobby-world: "world"
+
+#LOBBY BOOSTPAD
 boostpad-block: "GLOWSTONE"
 boostpad-plate: "HEAVY_WEIGHTED_PRESSURE_PLATE"
-boostpad-add-height-multiplier: 1.0
-boostpad-add-velocity-multiplier: 2.0
+boostpad-add-height-multiplier: 0.6
+boostpad-add-velocity-multiplier: 2.5
 
-djump-add-height-multiplier: 0.75
-djump-add-velocity-multiplier: 1.5
+#LOBBY DOUBLEJUMP
+djump-add-height-multiplier: 0.52
+djump-add-velocity-multiplier: 1.8
+djump-delay: 1.5
+
+#MESSAGES
+sender-instance: "You have to be a player to access §c%s"
+no-permission: "§cYou do not have enough permissions to perform this command."
+command-format: "§7To use this command, please use the format §c%s§7."
+set-lobby-world: "§7You have set the lobby world to §e%s§7."
+broadcast-set-lobby-world: "§7The player §e%s §7has just set the lobby world to §e%s§7."
+plugin-info: "§7You are currently running §e%s§7 on version §e%s§7."

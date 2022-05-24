@@ -24,12 +24,12 @@ public class BoostPadCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
+        if ( sender instanceof Player ) {
             Player ingameSender = (Player) sender;
 
-            if (args.length == 1 || args.length == 2) {
-                if (args[0].equalsIgnoreCase("setplate")) {
-                    if (args.length == 2) {
+            if ( args.length == 1 || args.length == 2 ) {
+                if ( args[0].equalsIgnoreCase("setplate") ) {
+                    if ( args.length == 2 ) {
                         String plate = args[1].toUpperCase();
 
                         try {
@@ -51,8 +51,8 @@ public class BoostPadCommand implements CommandExecutor {
                         ingameSender.sendMessage(ChatColor.DARK_RED + "This command has to be executed using the following format: " + ChatColor.RED + "/" + label + " [setplate/setblock] <name> or /" + label + " getinfo");
                     }
 
-                } else if (args[0].equalsIgnoreCase("setblock")) {
-                    if (args.length == 2) {
+                } else if ( args[0].equalsIgnoreCase("setblock") ) {
+                    if ( args.length == 2 ) {
                         String block = args[1].toUpperCase();
 
                         try {
@@ -76,8 +76,8 @@ public class BoostPadCommand implements CommandExecutor {
                     }
 
                     return false;
-                } else if (args[0].equalsIgnoreCase("setvelocity")) {
-                    if (args.length == 2) {
+                } else if ( args[0].equalsIgnoreCase("setvelocity") ) {
+                    if ( args.length == 2 ) {
                         try {
                             Double.valueOf(args[1]);
                         } catch (Exception exception) {
@@ -101,8 +101,8 @@ public class BoostPadCommand implements CommandExecutor {
                     }
 
                     return false;
-                } else if (args[0].equalsIgnoreCase("setheight")) {
-                    if (args.length == 2) {
+                } else if ( args[0].equalsIgnoreCase("setheight") ) {
+                    if ( args.length == 2 ) {
                         try {
                             Double.valueOf(args[1]);
                         } catch (Exception exception) {
@@ -126,7 +126,7 @@ public class BoostPadCommand implements CommandExecutor {
                     }
 
                     return false;
-                } else if (args[0].equalsIgnoreCase("info")) {
+                } else if ( args[0].equalsIgnoreCase("info") ) {
                     ingameSender.sendMessage(ChatColor.GRAY + "BoostpadBlock: " + ChatColor.YELLOW + boostpadBlock);
                     ingameSender.sendMessage(ChatColor.GRAY + "BoostpadPlate: " + ChatColor.YELLOW + boostpadPlate);
                     ingameSender.sendMessage(ChatColor.GRAY + "BoostpadHeightAddMultiplier: " + ChatColor.YELLOW + boostpadAddHeightMult);

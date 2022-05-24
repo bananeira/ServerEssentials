@@ -1,15 +1,26 @@
 package sagespigot.serveressentials;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import sagespigot.serveressentials.commands.BoostPadCommand;
-import sagespigot.serveressentials.commands.JustAMathFunctionLol;
+import org.bukkit.scheduler.BukkitRunnable;
+import sagespigot.serveressentials.commands.AdminEssentialsCommand;
 import sagespigot.serveressentials.listener.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public final class ServerEssentials extends JavaPlugin {
     private static ServerEssentials plugin;
     FileConfiguration config = getConfig();
+
+    public List<Player> performingDoubleJump = new ArrayList<>();
+    public List<Player> recentlyPerformedDoubleJump = new ArrayList<>();
+
+    public World lobbyWorld = getServer().getWorld((String) Objects.requireNonNull(config.get("lobby-world")));
 
     @Override
     public void onEnable() {
@@ -21,8 +32,7 @@ public final class ServerEssentials extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
         Bukkit.getPluginManager().registerEvents(new ToggleFlightListener(), this);
 
-        getCommand("boostpad").setExecutor(new BoostPadCommand());
-        getCommand("justamathfunctionlol").setExecutor(new JustAMathFunctionLol());
+        getCommand("serveressentials").setExecutor(new AdminEssentialsCommand());
 
         config.options().copyDefaults(true);
 
@@ -35,5 +45,14 @@ public final class ServerEssentials extends JavaPlugin {
 
     public FileConfiguration getConfigFile() {
         return config;
+    }
+
+    public void triggerDoubleJumpDelay(Player player, double delay) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                ServerEssentials.getInstance().recentlyPerformedDoubleJump.remove(player);
+            }
+        }.runTaskLater(this, (long) ( delay * 20 ));
     }
 }

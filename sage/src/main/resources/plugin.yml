@@ -4,8 +4,7 @@ main: sagespigot.serveressentials.ServerEssentials
 api-version: 1.18
 
 commands:
-  boostpad:
+  serveressentials:
     aliases:
-      - bp
-      - boostpad
-      - justamathfunctionlol
+      - se
+      - seadmin
