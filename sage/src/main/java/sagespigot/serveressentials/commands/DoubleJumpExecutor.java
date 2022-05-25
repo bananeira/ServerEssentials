@@ -1,4 +1,4 @@
 package sagespigot.serveressentials.commands;
 
-public class DoubleJump {
+public class DoubleJumpExecutor {
 }

@@ -9,6 +9,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 import sagespigot.serveressentials.ServerEssentials;
 
+import java.util.Objects;
+
 /**
  * Created on 11.03.2022, 21:38 in spigot.
  */
@@ -43,7 +45,9 @@ public class PlayerMoveListener implements Listener {
         }
 
         player.setAllowFlight(player.getGameMode() == GameMode.SURVIVAL
-                              && !ServerEssentials.getInstance().recentlyPerformedDoubleJump.contains(player)
-                              || player.getGameMode() == GameMode.CREATIVE);
+                              && ( !ServerEssentials.getInstance().recentlyPerformedDoubleJump.contains(player)
+                                   || player.getGameMode() == GameMode.CREATIVE ) && player.hasPermission(
+                Objects.requireNonNull(configFile.getString("se-doublejump"))
+        ));
     }
 }

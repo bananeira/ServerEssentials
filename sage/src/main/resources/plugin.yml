@@ -8,3 +8,5 @@ commands:
     aliases:
       - se
       - seadmin
+      - sessentials
+      - sess
