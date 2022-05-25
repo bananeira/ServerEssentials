@@ -18,8 +18,6 @@ public class AdminEssentialsCommand implements TabExecutor {
     String pluginName = ServerEssentials.getInstance().getDescription().getName();
     String pluginVersion = ServerEssentials.getInstance().getDescription().getVersion();
 
-    boolean matchCase = false;
-
     FileConfiguration configFile = ServerEssentials.getInstance().getConfigFile();
 
     @Override
@@ -67,61 +65,54 @@ public class AdminEssentialsCommand implements TabExecutor {
             return false;
         }
 
-        if ( args.length == 1 && !( args[0].equals("setLobbyWorldHere") || args[0].equals("boostpad") || args[0].equals("doublejump") ) ) {
-            inGameSender.sendMessage(String.format(
-                    (String) Objects.requireNonNull(
-                            ServerEssentials
-                                    .getInstance()
-                                    .getConfigFile()
-                                    .get("command-format")),
-                    "/" + label + " <setLobbyWorldHere | boostpad | doublejump>"));
-            return false;
-        } else {
+        if ( ( args.length == 1 && ( args[0].equals("setLobbyWorldHere") )
+               || ( args.length > 1
+                    && args[0].equals("boostpad")
+                    || args[0].equals("doublejump")
+               ) ) ) {
             switch ( args[0] ) {
                 case "setLobbyWorldHere":
-                    if ( commandSender.hasPermission(
+                    if ( inGameSender.hasPermission(
                             (String) Objects.requireNonNull(configFile.get("se-admin")))
-                         || commandSender.hasPermission(
-                            (String) Objects.requireNonNull(configFile.get("se-change-lobby-world"))
-                    ) )
-                        SetLobbyWorldExecutor.setLobbyWorldHere(inGameSender);
+                         || inGameSender.hasPermission(
+                            (String) Objects.requireNonNull(configFile.get("se-change-lobby-world")))
+                    ) SetLobbyWorldExecutor.setLobbyWorldHere(inGameSender);
                     else
-                        commandSender.sendMessage(String.format(
+                        inGameSender.sendMessage(String.format(
                                 (String) Objects.requireNonNull(
                                         ServerEssentials
                                                 .getInstance()
                                                 .getConfigFile()
                                                 .get("no-permission")),
                                 configFile.get("se-change-lobby-world") + "; " + configFile.get("se-admin")));
-                    matchCase = true;
+
                     return false;
 
                 case "boostpad":
-                    if ( commandSender.hasPermission(
+                    if ( inGameSender.hasPermission(
                             (String) Objects.requireNonNull(configFile.get("se-admin")))
-                         || commandSender.hasPermission(
+                         || inGameSender.hasPermission(
                             (String) Objects.requireNonNull(configFile.get("se-manage-boostpad"))
                     ) )
                         BoostPadExecutor.manageBoostPad(inGameSender, label, args);
                     else
-                        commandSender.sendMessage(String.format(
+                        inGameSender.sendMessage(String.format(
                                 (String) Objects.requireNonNull(
                                         ServerEssentials
                                                 .getInstance()
                                                 .getConfigFile()
                                                 .get("no-permission")),
                                 configFile.get("se-manage-boostpad") + "; " + configFile.get("se-admin")));
-                    matchCase = true;
                     return false;
 
                 case "doublejump":
-                    if ( commandSender.hasPermission(
+                    if ( inGameSender.hasPermission(
                             (String) Objects.requireNonNull(configFile.get("se-admin")))
-                         || commandSender.hasPermission(
+                         || inGameSender.hasPermission(
                             (String) Objects.requireNonNull(configFile.get("se-manage-doublejump"))
                     ) ) {
                     } else
-                        commandSender.sendMessage(
+                        inGameSender.sendMessage(
                                 String.format(
                                         (String) Objects.requireNonNull(
                                                 ServerEssentials
@@ -129,21 +120,18 @@ public class AdminEssentialsCommand implements TabExecutor {
                                                         .getConfigFile()
                                                         .get("no-permission")),
                                         configFile.get("se-manage-doublejump") + "; " + configFile.get("se-admin")));
-                    matchCase = true;
                     return false;
             }
-
-            if ( !matchCase ) {
-                inGameSender.sendMessage(String.format(
-                        (String) Objects.requireNonNull(
-                                ServerEssentials
-                                        .getInstance()
-                                        .getConfigFile()
-                                        .get("command-format")),
-                        "/" + label + " <setLobbyWorldHere | boostpad | doublejump>"));
-                return false;
-            }
         }
+
+        inGameSender.sendMessage(String.format(
+                (String) Objects.requireNonNull(
+                        ServerEssentials
+                                .getInstance()
+                                .getConfigFile()
+                                .get("command-format")),
+                "/" + label + " <setLobbyWorldHere | boostpad | doublejump>"));
+
         return false;
     }
 
