@@ -27,6 +27,7 @@ public class ToggleFlightListener implements Listener {
 
         if ( flightEvent.getPlayer().getGameMode() == GameMode.SURVIVAL
              && !ServerEssentials.getInstance().recentlyPerformedDoubleJump.contains(player)
+             && !ServerEssentials.getInstance().performingDoubleJump.contains(player)
              && player.hasPermission("se.doublejump") ) {
             ServerEssentials.getInstance().performingDoubleJump.add(player);
             ServerEssentials.getInstance().recentlyPerformedDoubleJump.add(player);

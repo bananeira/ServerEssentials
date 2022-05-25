@@ -18,6 +18,8 @@ public class AdminEssentialsCommand implements TabExecutor {
     String pluginName = ServerEssentials.getInstance().getDescription().getName();
     String pluginVersion = ServerEssentials.getInstance().getDescription().getVersion();
 
+    boolean matchCase = false;
+
     FileConfiguration configFile = ServerEssentials.getInstance().getConfigFile();
 
     @Override
@@ -91,6 +93,8 @@ public class AdminEssentialsCommand implements TabExecutor {
                                                 .getConfigFile()
                                                 .get("no-permission")),
                                 configFile.get("se-change-lobby-world") + "; " + configFile.get("se-admin")));
+                    matchCase = true;
+                    return false;
 
                 case "boostpad":
                     if ( commandSender.hasPermission(
@@ -107,6 +111,8 @@ public class AdminEssentialsCommand implements TabExecutor {
                                                 .getConfigFile()
                                                 .get("no-permission")),
                                 configFile.get("se-manage-boostpad") + "; " + configFile.get("se-admin")));
+                    matchCase = true;
+                    return false;
 
                 case "doublejump":
                     if ( commandSender.hasPermission(
@@ -123,9 +129,21 @@ public class AdminEssentialsCommand implements TabExecutor {
                                                         .getConfigFile()
                                                         .get("no-permission")),
                                         configFile.get("se-manage-doublejump") + "; " + configFile.get("se-admin")));
+                    matchCase = true;
+                    return false;
+            }
+
+            if ( !matchCase ) {
+                inGameSender.sendMessage(String.format(
+                        (String) Objects.requireNonNull(
+                                ServerEssentials
+                                        .getInstance()
+                                        .getConfigFile()
+                                        .get("command-format")),
+                        "/" + label + " <setLobbyWorldHere | boostpad | doublejump>"));
+                return false;
             }
         }
-
         return false;
     }
 

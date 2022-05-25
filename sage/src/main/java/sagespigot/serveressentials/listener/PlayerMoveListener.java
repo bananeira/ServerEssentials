@@ -25,8 +25,9 @@ public class PlayerMoveListener implements Listener {
         Material boostpadBlock = Material.valueOf(configFile.getString("boostpad-block"));
         Material boostpadPlate = Material.valueOf(configFile.getString("boostpad-plate"));
 
-        if ( playerLocation.getBlock().getType() == boostpadPlate &&
-             playerLocation.subtract(0, 1, 0).getBlock().getType() == boostpadBlock ) {
+        if ( playerLocation.getBlock().getType() == boostpadPlate
+             && player.hasPermission(Objects.requireNonNull(configFile.getString("se-boostpad")))
+             && playerLocation.subtract(0, 1, 0).getBlock().getType() == boostpadBlock ) {
             Double boostpadAddHeightMult = (Double) configFile.get("boostpad-add-height-multiplier");
             Double boostpadAddVelMult = (Double) configFile.get("boostpad-add-velocity-multiplier");
 
@@ -44,10 +45,12 @@ public class PlayerMoveListener implements Listener {
             ServerEssentials.getInstance().performingDoubleJump.remove(player);
         }
 
-        player.setAllowFlight(player.getGameMode() == GameMode.SURVIVAL
-                              && ( !ServerEssentials.getInstance().recentlyPerformedDoubleJump.contains(player)
-                                   || player.getGameMode() == GameMode.CREATIVE ) && player.hasPermission(
-                Objects.requireNonNull(configFile.getString("se-doublejump"))
-        ));
+        player.setAllowFlight(
+                player.getGameMode() == GameMode.SURVIVAL
+                && ( !ServerEssentials.getInstance().recentlyPerformedDoubleJump.contains(player)
+                     && !ServerEssentials.getInstance().performingDoubleJump.contains(player)
+                     || player.getGameMode() == GameMode.CREATIVE )
+                && player.hasPermission(Objects.requireNonNull(configFile.getString("se-doublejump"))
+                ));
     }
 }
